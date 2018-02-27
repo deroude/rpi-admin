@@ -2,6 +2,8 @@ const express = require('express');
 var bodyParser = require('body-parser');
 const app = express();
 
+var port = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
 
 var devices = {};
@@ -19,4 +21,4 @@ app.get('/rpi', (req, res) => {
     res.send(Object.keys(devices));
 })
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(port, () => console.log('RPI admin running on port ' + port));
