@@ -1,0 +1,30 @@
+{
+  "name": "rpi-admin",
+  "version": "1.0.0",
+  "description": "RPI Admin app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deroude/rpi-admin.git"
+  },
+  "keywords": [
+    "rpi",
+    "admin"
+  ],
+  "author": "Deroude",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deroude/rpi-admin/issues"
+  },
+  "homepage": "https://github.com/deroude/rpi-admin#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.15.1"
+  }
+}
