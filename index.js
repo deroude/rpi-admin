@@ -12,8 +12,11 @@ app.post('/rpi/:id', (req, res) => {
 });
 
 app.get('/rpi/:id', (req, res) => {
-    console.log(devices);
     res.send(devices[req.params.id]);
 });
+
+app.get('/rpi', (req, res) => {
+    res.send(Object.keys(devices));
+})
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
