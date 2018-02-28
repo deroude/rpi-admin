@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://rpi:rpi@localhost/rpi");
 
 const RadioStation = new Schema({ name: String, shoutcastId: String, resource: String });
 const RadioGenre = new Schema({ name: String, shoutcastId: String });
-const RadioStatus = new Schema({ genre: RadioGenre, subgenre: RadioGenre, station: RadioStation, favorites: RadioStation[] });
+const RadioStatus = new Schema({ genre: RadioGenre, subgenre: RadioGenre, station: RadioStation, favorites: [RadioStation] });
 
 const Status = mongoose.model('Status', {
     _id: String,
