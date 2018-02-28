@@ -6,6 +6,8 @@ const app = express();
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://rpi:rpi@localhost/rpi");
 
+var Schema = mongoose.Schema;
+
 const RadioStation = new Schema({ name: String, shoutcastId: String, resource: String });
 const RadioGenre = new Schema({ name: String, shoutcastId: String });
 const RadioStatus = new Schema({ genre: RadioGenre, subgenre: RadioGenre, station: RadioStation, favorites: [RadioStation] });
