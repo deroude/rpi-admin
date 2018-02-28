@@ -20,7 +20,7 @@ app.post('/rpi/:id', (req, res) => {
     Status.update({ _id: req.params.id }, {
         $set: {
             localIp: req.body.localIp,
-            lastModified: Date.now
+            lastModified: Date.now()
         }
     }, { upsert: true }, (err, raw) => {
         if (err) console.log(err);
