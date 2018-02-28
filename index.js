@@ -22,7 +22,7 @@ app.post('/rpi/:id', (req, res) => {
             localIp: req.body.localIp,
             lastModified: Date.now
         }
-    }, () => res.send());
+    }, { upsert: true }, () => res.send());
 });
 
 app.get('/rpi/:id', (req, res) => {
