@@ -22,15 +22,24 @@ app.post('/rpi/:id', (req, res) => {
             localIp: req.body.localIp,
             lastModified: Date.now
         }
-    }, { upsert: true }, () => res.send());
+    }, { upsert: true }, (err, raw) => {
+        if (err) console.log(err);
+        res.send();
+    });
 });
 
 app.get('/rpi/:id', (req, res) => {
-    Status.findById(req.params.id, (err, status) => res.send(status));
+    Status.findById(req.params.id, (err, status) => {
+        if (err) console.log(err);
+        res.send(status);
+    });
 });
 
 app.get('/rpi', (req, res) => {
-    Status.find({}, '_id', (re) => res.send(re));
+    Status.find({}, '_id', (err, re) => {
+        if (err) console.log(err);
+        res.send(re);
+    });
 })
 
 app.listen(port, () => console.log('RPI admin running on port ' + port));
