@@ -8,9 +8,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://rpi:rpi@localhost/rpi");
 
 var Schema = mongoose.Schema;
 
-const RadioStation = new Schema({ name: String, shoutcastId: String, resource: String });
-const RadioGenre = new Schema({ name: String, shoutcastId: String });
-const RadioStatus = new Schema({ genre: RadioGenre, subgenre: RadioGenre, station: RadioStation, favorites: [RadioStation] });
+const RadioStation = new Schema({ name: String, id: String, resource: String });
+const RadioGenre = new Schema({ name: String, id: String });
+const RadioStatus = new Schema({ selectedGenre: RadioGenre, selectedSubgenre: RadioGenre, selectedStation: RadioStation, favorites: [RadioStation] });
 
 const Status = mongoose.model('Status', {
     _id: String,
@@ -24,11 +24,15 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.post('/rpi/:id', (req, res) => {
+    var update = { lastModified: Date.now() };
+    if (req.body.localIp) {
+        update.localIp = req.body.localIp;
+    }
+    if (req.body.radioStatus) {
+        update.radioStatus = req.body.radioStatus;
+    }
     Status.update({ _id: req.params.id }, {
-        $set: {
-            localIp: req.body.localIp,
-            lastModified: Date.now()
-        }
+        $set: update
     }, { upsert: true }, (err, raw) => {
         if (err) console.log(err);
         res.send();
