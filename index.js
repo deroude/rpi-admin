@@ -10,7 +10,15 @@ var Schema = mongoose.Schema;
 
 const RadioStation = new Schema({ name: String, id: String, resource: [String] });
 const RadioGenre = new Schema({ name: String, id: String });
-const RadioStatus = new Schema({ selectedGenre: RadioGenre, selectedSubgenre: RadioGenre, selectedStation: RadioStation, playingStation: RadioStation, favorites: [RadioStation] });
+const RadioStatus = new Schema({ 
+    selectedGenre: RadioGenre, 
+    selectedSubgenre: RadioGenre, 
+    selectedStation: RadioStation, 
+    subgenresCollapsed:Boolean,
+    favoritesCollapsed:Boolean,
+    stationsCollapsed:Boolean,
+    playingStation: RadioStation, 
+    favorites: [RadioStation] });
 
 const Status = mongoose.model('Status', {
     _id: String,
