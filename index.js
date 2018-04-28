@@ -9,7 +9,7 @@ const router = express.Router()
 var port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
-app.use(express.static('dist'))
+//app.use(express.static('dist'))
 app.use("/shoutcast",shoutcastRoute);
 app.use("/status",statusRoute);
 
